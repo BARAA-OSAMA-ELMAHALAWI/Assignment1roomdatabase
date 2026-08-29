@@ -1,7 +1,6 @@
 package com.example.assignment1roomdatabase.entity;
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "students")
@@ -15,15 +14,6 @@ public class Student {
     private int age;
     private String major;
 
-    public Student(int studentId, String name, String email, int age, String major) {
-        this.studentId = studentId;
-        this.name = name;
-        this.email = email;
-        this.age = age;
-        this.major = major;
-    }
-
-    @Ignore
     public Student(String name, String email, int age, String major) {
         this.name = name;
         this.email = email;

@@ -1,7 +1,6 @@
 package com.example.assignment1roomdatabase.entity;
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "courses")
@@ -14,14 +13,6 @@ public class Course {
     private String title;
     private int creditHours;
 
-    public Course(int courseId, String courseCode, String title, int creditHours) {
-        this.courseId = courseId;
-        this.courseCode = courseCode;
-        this.title = title;
-        this.creditHours = creditHours;
-    }
-
-    @Ignore
     public Course(String courseCode, String title, int creditHours) {
         this.courseCode = courseCode;
         this.title = title;

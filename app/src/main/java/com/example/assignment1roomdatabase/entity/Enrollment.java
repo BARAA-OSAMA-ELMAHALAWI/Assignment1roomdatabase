@@ -2,7 +2,6 @@ package com.example.assignment1roomdatabase.entity;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -37,15 +36,6 @@ public class Enrollment {
     private String semester;
     private String grade;
 
-    public Enrollment(int enrollmentId, int studentId, int courseId, String semester, String grade) {
-        this.enrollmentId = enrollmentId;
-        this.studentId = studentId;
-        this.courseId = courseId;
-        this.semester = semester;
-        this.grade = grade;
-    }
-
-    @Ignore
     public Enrollment(int studentId, int courseId, String semester, String grade) {
         this.studentId = studentId;
         this.courseId = courseId;

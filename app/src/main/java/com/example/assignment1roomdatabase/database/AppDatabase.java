@@ -15,12 +15,12 @@ import com.example.assignment1roomdatabase.entity.Student;
 
 @Database(
         entities = {Student.class, Course.class, Enrollment.class},
-        version = 1,
+        version = 2,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static volatile AppDatabase INSTANCE;
+    private static AppDatabase instance;
 
     public abstract StudentDao studentDao();
 
@@ -28,19 +28,16 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract EnrollmentDao enrollmentDao();
 
-    public static AppDatabase getDatabase(Context context) {
-        if (INSTANCE == null) {
-            synchronized (AppDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(
-                                    context.getApplicationContext(),
-                                    AppDatabase.class,
-                                    "university.db")
-                            .fallbackToDestructiveMigration()
-                            .build();
-                }
-            }
+    public static AppDatabase getInstance(Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(
+                            context.getApplicationContext(),
+                            AppDatabase.class,
+                            "university.db")
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration(true)
+                    .build();
         }
-        return INSTANCE;
+        return instance;
     }
 }
